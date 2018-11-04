@@ -14,8 +14,7 @@ var to_type;
 var author;
 var displayDiv = document.getElementById("text");
 var inputDiv = document.getElementById("textinput");
-var spacemark = 0;
-
+var gameOn = true;
 
 $("document").ready(function(){
   random = randomIntFromInterval(0,database.length-1);
@@ -40,19 +39,17 @@ $("document").ready(function(){
 });
 
 
-$('#textinput').on('input', function(e){
-  //console.log(e);
-  // console.log(e);
-  //console.log(inputDiv.value);
-  spellcheck(e);
-  //console.log(to_type.substring(0, inputDiv.value.length) == inputDiv.value);
+$('#textinput').on('input', function(){
+  if(gameOn)
+  {
+    spellcheck();
+  }
 });
 
 
-function spellcheck(e)
+function spellcheck()
 {
-  console.log(to_type.substring(0, inputDiv.value.length));
-  console.log(to_type);
+
 
   if(to_type.substring(0, inputDiv.value.length) == inputDiv.value)
   {
@@ -60,33 +57,61 @@ function spellcheck(e)
     //CLEAR THE INPUT FIELD WHEN THE CORRECT SPACE OCCURS
     if(inputDiv.value[inputDiv.value.length-1] == " ")
     {
-      console.log("spacja");
-      spacemark = inputDiv.value.length;
-      to_type = to_type.substring(spacemark, to_type.length);
+      to_type = to_type.substring(inputDiv.value.length, to_type.length);
       console.log(to_type);
       inputDiv.value = "";
     }
 
+    if(to_type == inputDiv.value)
+    {
+      console.log("KONIEC");
+      gameOn = false;
+      stopGame();
+    }
+
+    editInput("rgba(40, 167, 69, 0.9)");
+
+
   }
   else
   {
-    console.log(to_type.substring(spacemark, inputDiv.value.length));
+    console.log(to_type.substring(inputDiv.value.length, inputDiv.value.length));
+    editInput("rgba(200, 35, 51, 0.9)");
   }
 }
 
 
+function editInput(borderInput)
+{
+  // $("#textinput:focus").css('box-shadow', shadowInput);//zmiana poswiaty inputa na zielony/czerwony
+  $("#textinput:focus").css('border-color', borderInput);//zmiana border inputa na zioelony/czerwonyu
+  // $("#wrongRight").css('border-color', borderSpan);
+
+}
 
 
+//AFTER FINISHING THE GAME
+function stopGame()
+{
+  inputDiv.value = "";
+  // Timer(timer); // end the timer
+  $( "#textinput" ).prop( "disabled", true );
+  $("#textinput").css("box-shadow", "none");
+  $("#textinput").css("border-color", "#ced4da");
+  $("#textinput:focus").css("border-color", "#ced4da");
 
-function ReadyScreen() {
-    setTimeout(function() {
-        $(".LoadingScreen").hide("fast");
-    }, 1000);
 }
 
 
 
 
+
+//HIDE THE LOADING SCREEN
+function ReadyScreen() {
+    setTimeout(function() {
+        $(".LoadingScreen").hide("fast");
+    }, 500);
+}
 
 //RANDOM NUMBER GENERATOR
 function randomIntFromInterval(min,max)
