@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Slabo+27px" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Typeracer</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/fontello.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+
+  </head>
+
+  <body class="bg-light">
+
+    <!-- Page Content -->
+
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container text-center">
+        <h1 class="display-3"><img src="img/logo.png" id="mainPageLogo"></h1>
+        <h2 class="display-3" id="textLogo">TypeRacer</h2>
+        <span id="here"></span>
+      </div>
+    </div>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><i class="demo-icon icon-font"></i>Normal Mode</h4>
+          <p class="card-text"></p>
+              <a href="type.html"><button class="btn btn-dark">Normal Mode</button></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><i class="demo-icon icon-code"></i>Programmer Mode</h4>
+          <p class="card-text"></p>
+
+      <a href="#" class="btn btn-info disabled">Programmer Mode</a>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><i class="demo-icon icon-language"></i>Lorem Ipsum Mode</h4>
+          <p class="card-text"></p>
+          <a href="#" class="btn btn-warning disabled">Lorem Ipsum Mode</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Custom Text</h4>
+          <p class="card-text"></p>
+          <a href="#" class="btn btn-primary disabled">Custom Text</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+      </div>
+    </div>
+    </div>
+    <script src="jquery/jquery.min.js"></script>
+    <script src="jquery/jquery.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/typed.js"></script>
+    <script>
+	var typed = new Typed('#here', {
+    strings: ["Learn to type.", "Improve your skills.", "Have fun."],
+  		// typing speed
+  		typeSpeed: 20,
+  		// time before typing starts
+  		startDelay: 500,
+  		// backspacing speed
+  		backSpeed: 20,
+  		// time before backspacing
+  		backDelay: 2000,
+  		// loop
+  		loop: true,
+});
+
+</script>
+
+  </body>
+
+</html>

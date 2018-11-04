@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="">
+
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Slabo+27px" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>Typeracer</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/fontello.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <style>
+      body {
+        padding-top: 54px;
+      }
+      @media (min-width: 992px) {
+        body {
+          padding-top: 56px;
+        }
+      }
+
+    </style>
+  </head>
+
+  <body class="bg-light">
+    <div class="LoadingScreen">
+      <div class="container text-center">
+        <h1 class="display-3">Loading ...</h1>
+      </div>
+    </div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.php"><img class="image-responsive" src="img/logo.png">typeracer</a>
+      </div>
+    </nav>
+
+
+      <div class="jumbotron">
+        <div class="container">
+            <div class="textMenu">
+              <button type="button" class="btn btn-light" id="zoomIn"><i class="demo-icon icon-zoom-in"></i></button>
+              <button type="button" class="btn btn-light" id="zoomOut"><i class="demo-icon icon-zoom-out"></i></button>
+            </div>
+            <div style="clear:both"></div>
+          <div class="textBG">
+            <p id="text"></p>
+
+          </div>
+
+        </div>
+      </div>
+
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+        <input type="text" class="form-control" id="textinput" autocomplete="off" spellcheck="false"/></br> </br>
+          <!-- <textarea class="form-control" id="textinput" autocomplete="off" spellcheck="false" placeholder="Pisz tutaj..."></textarea> -->
+
+          <!-- Koncowe statystyki -->
+      <div class="row" id="statsText">
+
+        <div class="col-md-12"> </br>
+          <h2><?php TekstInfo(); ?></h2> </br>
+        </div>
+
+        <div class="col-md-4">
+          <h2 id="timeID">Time</h2>
+        </div>
+        <div class="col-md-4">
+          <h2 id="accuracyID">Dokładność</h2>
+          <hr>
+          <p id="accuracyIDmore"></p>
+        </div>
+        <div class="col-md-4">
+          <h2 id="speedID">Speed</h2>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+
+
+    <script src="jquery/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/Interface.js"></script>
+  </body>
+
+</html>

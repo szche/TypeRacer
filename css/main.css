@@ -1,0 +1,124 @@
+/*
+font-family: 'Montserrat', sans-serif;
+font-family: 'Slabo 27px', serif;
+*/
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+#textinput
+{
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+    font-size: 5vh;
+    border-radius: 6px;
+    box-shadow: none;
+    overflow:auto;
+    resize:none;
+    height:11vh;
+    font-family: 'Slabo 27px', serif;
+    padding:10px;
+}
+
+.jumbotron {
+  font-size: 2.3em;
+  line-height: 150%;
+  background-color: white;
+  padding-top: 20px;
+}
+
+#text {
+  font-family: 'Slabo 27px', serif;
+  font-size: 1em;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.navbar-brand img {
+  max-height: 30px;
+}
+
+.textMenu {
+  float:right;
+  margin-bottom: 2%;
+}
+
+.textMenu button {
+  padding:1px;
+}
+
+#mainPageLogo {
+  margin-top: 6%;
+  max-width: 40%;
+}
+
+.card {
+  margin-bottom: 5%;
+  background-color: transparent;
+  border: none;
+}
+
+#textLogo {
+    font-size: 5vh;
+}
+
+#here {
+  font-size: 0.8em;
+}
+
+#textinput::-webkit-scrollbar {
+   display: none;
+ }
+
+#wrongRight {
+  border-bottom: 2px solid black;
+}
+
+#statsText {
+    display:none;
+}
+
+#statsText .media {
+  margin-top: 2%;
+  margin-bottom: 7%;
+}
+
+.enterPlace {
+  max-width: 2%;
+}
+
+#btc {
+  color:#f7931a;
+}
+
+#paypal {
+  color:#003087;
+}
+#done {
+  color:#28a745;
+}
+.LoadingScreen {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index:1050;
+  background-color: white;
+  opacity: 0.95;
+  display:block;
+}
+
+.LoadingScreen .container {
+  position: fixed;
+  top: 30%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
