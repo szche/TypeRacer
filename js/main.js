@@ -5,7 +5,8 @@ var database = [
   ['You\'ve gotta dance like there\'s nobody watching, Love like you\'ll never be hurt, Sing like there\'s nobody listening, And live like it\'s heaven on earth.', 'William W. Purkey'],
   ['Twenty years from now you will be more disappointed by the things that you didn\'t do than by the ones you did do. So throw off the bowlines, Sail away from the safe harbor, Catch the trade winds in your sails. Explore. Dream. Discover.', 'Mark Twain'],
   ['Let others lead small lives, but not you. Let others argue over small things, but not you. Let others cry over small hurts, but not you. Let others leave their future in someone else\'s hands, but not you.', 'Jim Rohn'],
-  ['People think a soul mate is your perfect fit, and that\'s what everyone wants. But a true soul mate is a mirror, the person who shows you everything that is holding you back, the person who brings you to your own attention so you can change your life.','Eat, Pray, Love by Elizabeth Gilbert']
+  ['People think a soul mate is your perfect fit, and that\'s what everyone wants. But a true soul mate is a mirror, the person who shows you everything that is holding you back, the person who brings you to your own attention so you can change your life.','Eat, Pray, Love by Elizabeth Gilbert'],
+  ['test', 'author']
 ];
 //
 
@@ -15,6 +16,11 @@ var author;
 var displayDiv = document.getElementById("text");
 var inputDiv = document.getElementById("textinput");
 var gameOn = true;
+var time = 0;
+var timer;
+var intervalInSec = 1;
+var mistakes = 0;
+
 
 $("document").ready(function(){
   random = randomIntFromInterval(0,database.length-1);
@@ -40,11 +46,20 @@ $("document").ready(function(){
 
 
 $('#textinput').on('input', function(){
+
+
+  //CHECK IF THE GAME ISN'T ARLEADY FINISHED
   if(gameOn)
   {
     spellcheck();
   }
 });
+
+//START THE TIMER
+$('#textinput').one('keypress', function() {
+  timer = setInterval(timeCounter, intervalInSec*100);
+});
+
 
 
 function spellcheck()
@@ -66,7 +81,11 @@ function spellcheck()
     {
       console.log("KONIEC");
       gameOn = false;
+
+      clearInterval(timer);
+
       stopGame();
+      console.log(time);
     }
 
     editInput("rgba(40, 167, 69, 0.9)");
@@ -75,6 +94,7 @@ function spellcheck()
   }
   else
   {
+    mistakes += 1;
     console.log(to_type.substring(inputDiv.value.length, inputDiv.value.length));
     editInput("rgba(200, 35, 51, 0.9)");
   }
@@ -100,10 +120,35 @@ function stopGame()
   $("#textinput").css("border-color", "#ced4da");
   $("#textinput:focus").css("border-color", "#ced4da");
 
+
+  ShowStats();
+}
+
+
+//SHOW THE TYPING STATS
+function ShowStats()
+{
+  accuracy = parseInt(((displayDiv.innerText.length-mistakes)/displayDiv.innerText.length * 100));
+
+  $("#text-info").html(author);
+  $("#accuracyID").html("Accuracy: " + accuracy + "%");
+  $("#timeID").html("Time: " + time/10 + "s");
+  $("#accuracyIDmore").html("Mistakes:<b> " + mistakes + "</b></br>Characters Total: <b>" + displayDiv.innerText.length +"</b>");
+  $("#speedID").html("Speed : " + parseInt(displayDiv.innerText.length / (time/600)) + " CPM");
+  $("#statsText").css("display", "flex");
+  $("#statsText").hide();
+  $("#statsText").show("slow");
 }
 
 
 
+
+//MEASURE TIME
+function timeCounter()
+{
+  time += 1;
+  console.log(time);
+}
 
 
 //HIDE THE LOADING SCREEN

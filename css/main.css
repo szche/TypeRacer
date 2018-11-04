@@ -93,16 +93,11 @@ body {
   max-width: 2%;
 }
 
-#btc {
-  color:#f7931a;
-}
 
-#paypal {
-  color:#003087;
-}
 #done {
   color:#28a745;
 }
+
 .LoadingScreen {
   position: fixed;
   top: 0;
