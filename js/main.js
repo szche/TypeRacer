@@ -10,6 +10,8 @@ var database = [
 ];
 //
 
+var correctColor = "rgba(40, 167, 69, 0.9)";
+var mistakeColor = "rgba(200, 35, 51, 1)";
 
 var to_type;
 var author;
@@ -32,7 +34,6 @@ $("document").ready(function(){
   handleDisplyChanges();
 
   inputDiv.value = "";
-  editDisplay();
 
   //DISPLAY THE TEXT
   displayDiv.innerHTML = to_type;
@@ -63,6 +64,8 @@ $('#textinput').on('input', function(){
 //START THE TIMER
 $('#textinput').one('keypress', function() {
   timer = setInterval(timeCounter, intervalInSec*100);
+  editDisplay();
+
 });
 
 
@@ -78,42 +81,31 @@ function spellcheck()
     if(inputDiv.value[inputDiv.value.length-1] == " ")
     {
       writen += to_type.substring(0, inputDiv.value.length);
-      // console.log(writen);
       to_type = to_type.substring(inputDiv.value.length, to_type.length);
       handleDisplyChanges();
-      // console.log(to_type);
-      // console.log(spaceplace);
-      // console.log(active_word);
       inputDiv.value = "";
     }
 
-    editInput("rgba(40, 167, 69, 0.9)", "black");
-
+    editInput(correctColor, "black");
 
     if(to_type == inputDiv.value)
     {
-      console.log("KONIEC");
       gameOn = false;
-
       clearInterval(timer);
-
       stopGame();
-      console.log(time);
     }
-
-
     editDisplay();
   }
   else
   {
     mistakes += 1;
     console.log(to_type.substring(inputDiv.value.length, inputDiv.value.length));
-    editInput("rgba(200, 35, 51, 0.9)", "red");
+    editInput(mistakeColor, mistakeColor);
   }
 
 }
 
-
+//HANDLE DISPLAY CHANGES
 function handleDisplyChanges()
 {
   spaceplace = to_type.search(" ");
@@ -124,19 +116,18 @@ function handleDisplyChanges()
   active_word = to_type.substring(0, spaceplace);
 }
 
+//EDUT THE DISPLAY DIV TO SHOW PROGRESS
 function editDisplay()
 {
-  displayDiv.innerHTML = '<span class="completed-words">' + writen + '</span>' + '<span class="current-word">' + inputDiv.value + '</span>'+ active_word.substring(inputDiv.value.length, active_word.length) + to_type.substring(spaceplace, to_type.length);
+  displayDiv.innerHTML = '<span class="completed-words">' + writen + '</span>' + '<span class="current-active-word">' + '<span class="current-word">' + inputDiv.value + '</span>'+ active_word.substring(inputDiv.value.length, active_word.length) + '</span>' + to_type.substring(spaceplace, to_type.length);
 }
 
+//EDIT INPUT FIELD AND DISPLAY DIV IN CASE OF MISTAKE/CORRECT INPUT
 function editInput(borderInput, active_word_color)
 {
   // $("#textinput:focus").css('box-shadow', shadowInput);//zmiana poswiaty inputa na zielony/czerwony
   $("#textinput:focus").css('border-color', borderInput);//zmiana border inputa na zioelony/czerwonyu
-  $(".current-word").css('color', active_word_color);
-
-  // $("#wrongRight").css('border-color', borderSpan);
-
+  $(".current-active-word").css('color', active_word_color);
 }
 
 
@@ -144,12 +135,11 @@ function editInput(borderInput, active_word_color)
 function stopGame()
 {
   inputDiv.value = "";
-  // Timer(timer); // end the timer
   $( "#textinput" ).prop( "disabled", true );
   $("#textinput").css("box-shadow", "none");
   $("#textinput").css("border-color", "#ced4da");
   $("#textinput:focus").css("border-color", "#ced4da");
-  $("#text").css('color', 'rgba(40, 167, 69, 0.9)');
+  $("#text").css('color', correctColor);
 
 
   ShowStats();
@@ -163,7 +153,7 @@ function ShowStats()
 
   $("#text-info").html(author);
   $("#accuracyID").html("Accuracy: " + accuracy + "%");
-  $("#timeID").html("Time: " + time/10 + "s");
+  $("#timeID").html("Time: " + time/10 + " s");
   $("#accuracyIDmore").html("Mistakes:<b> " + mistakes + "</b></br>Characters Total: <b>" + displayDiv.innerText.length +"</b>");
   $("#speedID").html("Speed : " + parseInt(displayDiv.innerText.length / (time/600)) + " CPM");
   $("#statsText").css("display", "flex");
@@ -178,7 +168,6 @@ function ShowStats()
 function timeCounter()
 {
   time += 1;
-  // console.log(time);
 }
 
 

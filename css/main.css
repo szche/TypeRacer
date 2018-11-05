@@ -76,9 +76,6 @@ body {
    display: none;
  }
 
-#wrongRight {
-  border-bottom: 2px solid black;
-}
 
 #statsText {
     display:none;
@@ -89,14 +86,6 @@ body {
   margin-bottom: 7%;
 }
 
-.enterPlace {
-  max-width: 2%;
-}
-
-
-#done {
-  color:#28a745;
-}
 
 .LoadingScreen {
   position: fixed;
@@ -126,3 +115,8 @@ body {
 {
   border-bottom: 2px solid black;
 }
+
+/* .current-active-word
+{
+  color:black;
+} */
