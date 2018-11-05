@@ -20,14 +20,19 @@ var time = 0;
 var timer;
 var intervalInSec = 1;
 var mistakes = 0;
-
+var writen = "";
+var spaceplace;
+var active_word;
 
 $("document").ready(function(){
   random = randomIntFromInterval(0,database.length-1);
   to_type = database[random][0];
   author = database[random][1];
 
+  handleDisplyChanges();
+
   inputDiv.value = "";
+  editDisplay();
 
   //DISPLAY THE TEXT
   displayDiv.innerHTML = to_type;
@@ -72,10 +77,18 @@ function spellcheck()
     //CLEAR THE INPUT FIELD WHEN THE CORRECT SPACE OCCURS
     if(inputDiv.value[inputDiv.value.length-1] == " ")
     {
+      writen += to_type.substring(0, inputDiv.value.length);
+      // console.log(writen);
       to_type = to_type.substring(inputDiv.value.length, to_type.length);
-      console.log(to_type);
+      handleDisplyChanges();
+      // console.log(to_type);
+      // console.log(spaceplace);
+      // console.log(active_word);
       inputDiv.value = "";
     }
+
+    editInput("rgba(40, 167, 69, 0.9)", "black");
+
 
     if(to_type == inputDiv.value)
     {
@@ -88,23 +101,40 @@ function spellcheck()
       console.log(time);
     }
 
-    editInput("rgba(40, 167, 69, 0.9)");
 
-
+    editDisplay();
   }
   else
   {
     mistakes += 1;
     console.log(to_type.substring(inputDiv.value.length, inputDiv.value.length));
-    editInput("rgba(200, 35, 51, 0.9)");
+    editInput("rgba(200, 35, 51, 0.9)", "red");
   }
+
 }
 
 
-function editInput(borderInput)
+function handleDisplyChanges()
+{
+  spaceplace = to_type.search(" ");
+  if(spaceplace <= 0)
+  {
+    spaceplace = to_type.length;
+  }
+  active_word = to_type.substring(0, spaceplace);
+}
+
+function editDisplay()
+{
+  displayDiv.innerHTML = '<span class="completed-words">' + writen + '</span>' + '<span class="current-word">' + inputDiv.value + '</span>'+ active_word.substring(inputDiv.value.length, active_word.length) + to_type.substring(spaceplace, to_type.length);
+}
+
+function editInput(borderInput, active_word_color)
 {
   // $("#textinput:focus").css('box-shadow', shadowInput);//zmiana poswiaty inputa na zielony/czerwony
   $("#textinput:focus").css('border-color', borderInput);//zmiana border inputa na zioelony/czerwonyu
+  $(".current-word").css('color', active_word_color);
+
   // $("#wrongRight").css('border-color', borderSpan);
 
 }
@@ -119,6 +149,7 @@ function stopGame()
   $("#textinput").css("box-shadow", "none");
   $("#textinput").css("border-color", "#ced4da");
   $("#textinput:focus").css("border-color", "#ced4da");
+  $("#text").css('color', 'rgba(40, 167, 69, 0.9)');
 
 
   ShowStats();
@@ -147,7 +178,7 @@ function ShowStats()
 function timeCounter()
 {
   time += 1;
-  console.log(time);
+  // console.log(time);
 }
 
 

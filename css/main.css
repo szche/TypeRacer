@@ -117,3 +117,12 @@ body {
   bottom: 0;
   left: 0;
 }
+
+.completed-words
+{
+  color: rgba(40, 167, 69, 0.9);
+}
+.current-word
+{
+  border-bottom: 2px solid black;
+}
