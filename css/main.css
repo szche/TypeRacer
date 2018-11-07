@@ -17,7 +17,7 @@ body {
     box-shadow: none;
     overflow:auto;
     resize:none;
-    height:11vh;
+    height:10vh;
     font-family: 'Slabo 27px', serif;
     padding:10px;
 }
@@ -125,7 +125,18 @@ button
 {
   cursor:not-allowed !important;
 }
-/* .current-active-word
+
+#typeDiv input
 {
-  color:black;
-} */
+  display: inline-block;
+}
+
+#typeDiv button
+{
+  margin: 0;
+  position: absolute;
+  top: 40%;
+  left: 90%;
+  transform: translate(0%, -50%);
+  z-index: 2;
+}
