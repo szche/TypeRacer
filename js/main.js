@@ -10,7 +10,7 @@ var database = [
   ['Still, there are times I am bewildered by each mile I have traveled, each meal I have eaten, each person I have known, each room in which I have slept. As ordinary as it all appears, there are times when it is beyond my imagination.','Jhumpa Lahiri, Interpreter of Maladies'],
   ['Hello, babies. Welcome to Earth. It\'s hot in the summer and cold in the winter. It\'s round and wet and crowded. At the outside, babies, you\'ve got about a hundred years here. There\'s only one rule that I know of, babies - God damn it, you\'ve got to be kind.','Leo Tolstoy, Anna Karenina'],
   ['You call yourself a free spirit, a \'wild thing\', and you\'re terrified somebody\'s gonna stick you in a cage. Well baby, you\'re already in that cage. You built it yourself. And it\'s not bounded in the west by Tulip, Texas, or in the east by Somali-land. It\'s wherever you go. Because no matter where you run, you just end up running into yourself.','Truman Capote, Breakfast at Tiffany\'s'],
-  ['There is a loneliness that can be rocked. Arms crossed, knees drawn up, holding, holding on, this motion, unlike a ship\'s, smooths and contains the rocker. It\'s an inside kind — wrapped tight like skin. Then there is the loneliness that roams. No rocking can hold it down. It is alive. On its own. A dry and spreading thing that makes the sound of one\'s own feet going seem to come from a far-off place.','Toni Morrison, Beloved'],
+  ['There is a loneliness that can be rocked. Arms crossed, knees drawn up, holding, holding on, this motion, unlike a ship\'s, smooths and contains the rocker. It\'s an inside kind - wrapped tight like skin. Then there is the loneliness that roams. No rocking can hold it down. It is alive. On its own. A dry and spreading thing that makes the sound of one\'s own feet going seem to come from a far-off place.','Toni Morrison, Beloved'],
   ['Beautiful means \"full of beauty.\" Beautiful is not about how you look on the outside, beautiful is about what you\'re made of. Beautiful people spend time discovering what their idea of beauty on this earth is. They know themselves well enough to know what they love, and they love themselves enough to fill up with a little of their particular kind of beauty each day.','Love Warrior by Glennon Doyle Melton'],
   ['It cannot be doubted that each of us can only see part of the picture. The doctor sees one, the patient another, the engineer a third, the economist a fourth, the pearl diver a fifth, the alcoholic a sixth, the cable guy a seventh, the sheep farmer an eighth, the Indian beggar a ninth, the pastor a tenth. Human knowledge is never contained in one person. It grows from the relationships we create between each other and the world, and still it is never complete.','When Breath Becomes Air by Paul Kalanithi']
 ];
@@ -32,8 +32,11 @@ var mistakes = 0;
 var writen = "";
 var spaceplace;
 var active_word;
+var autoHeight;
 
 $("document").ready(function(){
+
+
   chooseTheText();
 
 
@@ -60,7 +63,14 @@ $('#textinput').on('input', function(){
 //START THE TIMER
 $('#textinput').one('keypress', function() {
   refreshPossible = false;
+
+  //MAKE THE BUTTON DISABLED AND HIDE IT
   $(".refreshTextButton").addClass("disabled");
+  $( ".refreshTextButton" ).fadeTo( "slow" , 0.05, function() {
+    $(".refreshTextButton").hide();
+});
+
+
   timer = setInterval(timeCounter, intervalInSec*100);
   editDisplay();
 
@@ -97,7 +107,6 @@ function spellcheck()
   else
   {
     mistakes += 1;
-    console.log(to_type.substring(inputDiv.value.length, inputDiv.value.length));
     editInput(mistakeColor, mistakeColor);
   }
 
@@ -123,7 +132,9 @@ function editDisplay()
 //EDIT INPUT FIELD AND DISPLAY DIV IN CASE OF MISTAKE/CORRECT INPUT
 function editInput(borderInput, active_word_color)
 {
-  // $("#textinput:focus").css('box-shadow', shadowInput);//zmiana poswiaty inputa na zielony/czerwony
+  color = '0px 0px 4px ' + borderInput;
+  // console.log(color);
+   $('#textinput').css('box-shadow', color);
   $("#textinput:focus").css('border-color', borderInput);//zmiana border inputa na zioelony/czerwonyu
   $(".current-active-word").css('color', active_word_color);
 }
@@ -147,6 +158,15 @@ function stopGame()
 //SHOW THE TYPING STATS
 function ShowStats()
 {
+  $(".typeDisplayDiv").animate({
+    fontSize: '2em',
+    height: 'auto'
+  }, "slow");
+  $(".textBG").animate({
+    padding: '2vh',
+  }, "slow");
+  $(".typeDisplayDiv").css('height', 'auto');
+
   accuracy = parseInt(((displayDiv.innerText.length-mistakes)/displayDiv.innerText.length * 100));
 
   $("#text-info").html(author);
@@ -186,13 +206,23 @@ function chooseTheText()
     handleDisplyChanges();
     inputDiv.value = "";
 
-    //DISPLAY THE TEXT
+
+    $(".typeDisplayDiv").animate({
+      height: '0px'}, "slow");
+    $(".typeDisplayDiv").css('height', 'auto');
     displayDiv.innerHTML = to_type;
+    autoHeight = $(".typeDisplayDiv").height();
+
+    // //DISPLAY THE TEXT
+    $(".typeDisplayDiv").animate({
+      height: autoHeight}, "slow");
+
 
 
      //FOCUS THE INPUT
      $("#textinput").focus();
   }
+
 }
 
 //RANDOM NUMBER GENERATOR

@@ -14,7 +14,7 @@ body {
     width:50%;
     font-size: 5vh;
     border-radius: 6px;
-    box-shadow: none;
+    /* box-shadow: none; */
     overflow:auto;
     resize:none;
     height:10vh;
@@ -27,6 +27,16 @@ body {
   line-height: 150%;
   background-color: white;
   padding-top: 20px;
+}
+
+.typeDisplayDiv
+{
+  height: 500px;
+}
+
+.textBG
+{
+  padding-bottom: 5vh;
 }
 
 #text {
@@ -139,4 +149,9 @@ button
   left: 90%;
   transform: translate(0%, -50%);
   z-index: 2;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+
 }
